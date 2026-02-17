@@ -1,0 +1,20 @@
+# Ignore artifacts:
+build
+coverage
+.next
+out
+node_modules
+dist
+public
+.gitignore
+.prettierignore
+.prettierrc
+eslint.config.mjs
+next-env.d.ts
+next.config.ts
+package-lock.json
+Package.json
+postcss.config.mjs
+README.md
+tsconfig.json
+yarn.lock
