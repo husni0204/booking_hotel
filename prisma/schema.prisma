@@ -1,20 +1,12 @@
 generator client {
-<<<<<<< HEAD
-  provider = "prisma-client.js"
-  output   = "../src/generated/prisma"
-=======
   provider = "prisma-client-js"
-  output   = "./src/generated/prisma"
->>>>>>> f560fe8db39d3cd7a8eba3363cc7302f8d5eed20
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-<<<<<<< HEAD
 model Room {
   id            String          @id @default(cuid())
   name          String
@@ -84,8 +76,6 @@ model User {
   updatedAt     DateTime      @updatedAt
 }
 
-=======
->>>>>>> f560fe8db39d3cd7a8eba3363cc7302f8d5eed20
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -99,7 +89,6 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-<<<<<<< HEAD
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -143,79 +132,3 @@ model VerificationToken {
 
 //   @@id([provider, providerAccountId])
 // }
-=======
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([provider, providerAccountId])
-}
-
-model User {
-  id            String        @id @default(cuid())
-  name          String?
-  email         String        @unique
-  emailVerified DateTime?
-  image         String?
-  role          String        @default("user")
-  phone         String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  accounts      Account[]
-  Reservation   Reservation[]
-}
-
-model Room {
-  id            String          @id @default(cuid())
-  name          String
-  description   String
-  image         String
-  price         Int
-  capacity      Int             @default(1)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  Reservation   Reservation[]
-  RoomAmenities RoomAmenities[]
-}
-
-model Amenities {
-  id            String          @id @default(cuid())
-  name          String
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  RoomAmenities RoomAmenities[]
-}
-
-model RoomAmenities {
-  id          String    @id @default(cuid())
-  roomId      String
-  amenitiesId String
-  Amenities   Amenities @relation(fields: [amenitiesId], references: [id], onDelete: Cascade)
-  Room        Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
-}
-
-model Reservation {
-  id        String   @id @default(cuid())
-  startDate DateTime
-  endDate   DateTime
-  price     Int
-  userId    String
-  roomId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Payment   Payment?
-  Room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Payment {
-  id            String      @id @default(cuid())
-  method        String?
-  amount        Int
-  status        String      @default("unpaid")
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  reservationId String      @unique
-  Reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
-}
->>>>>>> f560fe8db39d3cd7a8eba3363cc7302f8d5eed20
