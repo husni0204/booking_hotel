@@ -45,7 +45,7 @@ const Navlink = () => {
                             className="block py-2 text-gray-800 hover:bg-gray-100 rounded-sm 
                             md:hover:bg-transparent md:p-0"
                         >
-                            Rooms
+                            Product
                         </Link>
                     </li>
                     <li>
@@ -63,7 +63,7 @@ const Navlink = () => {
                             className="block py-2 text-gray-800 hover:bg-gray-100 rounded-sm 
                             md:hover:bg-transparent md:p-0"
                         >
-                            My Reservation
+                            Our Service
                         </Link>
                     </li>
                     <li>
@@ -72,7 +72,7 @@ const Navlink = () => {
                             className="block py-2 text-gray-800 hover:bg-gray-100 rounded-sm 
                             md:hover:bg-transparent md:p-0"
                         >
-                            Dashboard
+                            Project
                         </Link>
                     </li>
                     <li>
@@ -81,7 +81,8 @@ const Navlink = () => {
                             className="block py-2 text-gray-800 hover:bg-gray-100 rounded-sm 
                             md:hover:bg-transparent md:p-0"
                         >
-                            Manage Room
+                            FAST RESPONS
+                            081213701269
                         </Link>
                     </li>
                     <li className="pt-2 md:pt-0">

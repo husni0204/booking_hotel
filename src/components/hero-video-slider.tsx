@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-
+import { getVideosFromPublic } from "./get-videos";
 export type HeroVideoSlide = {
     src: string;
     poster?: string;
@@ -22,7 +22,16 @@ export default function HeroVideoSlider({
     intervalMs = 7000,
     fallbackImageSrc = "/hero.jpg",
 }: Props) {
-    const slides = useMemo(() => videos?.filter((v) => v?.src) ?? [], [videos]);
+    const [fetchedVideos, setFetchedVideos] = useState<HeroVideoSlide[]>([]);
+
+    useEffect(() => {
+        if (!videos || videos.length === 0) {
+            getVideosFromPublic().then(setFetchedVideos);
+        }
+    }, [videos]);
+
+    const activeVideos = videos?.length ? videos : fetchedVideos;
+    const slides = useMemo(() => activeVideos?.filter((v) => v?.src) ?? [], [activeVideos]);
     const [activeIdx, setActiveIdx] = useState(0);
     const hasSlides = slides.length > 0;
 
@@ -88,14 +97,14 @@ export default function HeroVideoSlider({
                 )}
 
                 <div className="absolute inset-0 bg-black/25" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-linear-to-b from-black/25 via-transparent to-black/20" />
             </div>
 
             <div className="relative flex flex-col justify-center items-center h-full text-center px-5">
                 <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-3 capitalize">
-                    {slides[activeIdx]?.heading ?? "Book your luxury room"}
+                    {slides[activeIdx]?.heading ?? "Sebuah Provinsi yang kaya akan sejarah dan keindahan alam."}
                 </h1>
-                <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">
+                {/* <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">
                     {slides[activeIdx]?.subheading ?? "Get Special offer just for you today."}
                 </p>
                 <div className="flex gap-5">
@@ -111,7 +120,7 @@ export default function HeroVideoSlider({
                     >
                         Contact Us
                     </Link>
-                </div>
+                </div> */}
 
                 {hasSlides && (
                     <div className="absolute left-0 right-0 bottom-8 flex flex-col items-center gap-4">
@@ -148,9 +157,9 @@ export default function HeroVideoSlider({
                                 Next
                             </button>
                         </div>
-                        <p className="text-xs text-white/70">
+                        {/* <p className="text-xs text-white/70">
                             Auto slide every {Math.round(intervalMs / 1000)}s
-                        </p>
+                        </p> */}
                     </div>
                 )}
             </div>

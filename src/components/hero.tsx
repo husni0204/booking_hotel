@@ -16,7 +16,7 @@ const Hero: FC = () => {
             </div>
             <div className="relative flex flex-col justify-center items-center h-full text-center">
                 <h1 className="text-7xl font-extrabold leading-tight mb-3 capitalize">
-                    Book your luxury room
+                    Sebuah Provinsi yang kaya akan sejarah dan keindahan alam.
                 </h1>
                 <p className="text-xl text-gray-300 mb-8">Get Special offer just for you today.</p>
                 <div className="flex gap-5">
